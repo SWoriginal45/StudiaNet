@@ -18,12 +18,10 @@
             color: #333;
         }
 
-        /* Cursor de mão para tudo que for clicável */
-        a, button, .btn-play, .logo-text {
+        a, button, .btn-play, .logo-text, .item-slot {
             cursor: pointer;
         }
 
-        /* CENTRALIZAÇÃO DO LOGO */
         .logo-area { 
             width: 900px; 
             margin: 20px auto 5px auto; 
@@ -37,7 +35,7 @@
             letter-spacing: -4px; 
             margin: 0; 
             text-decoration: none; 
-            display: block; /* Mudado para block para centralizar melhor */
+            display: block; 
         }
 
         .economy-bar {
@@ -83,6 +81,15 @@
             display: inline-block;
             margin-top: 10px;
         }
+
+        /* Estilos do Catálogo */
+        .catalog-container { display: flex; gap: 15px; }
+        .catalog-filter { width: 150px; background: #F2F2F2; border: 1px solid #CCC; padding: 10px; font-size: 12px; }
+        .catalog-main { flex: 1; }
+        .search-bar { width: 100%; padding: 5px; margin-bottom: 15px; border: 1px solid #999; font-size: 12px; }
+        .item-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px; }
+        .item-slot { border: 1px solid #DDD; height: 120px; background: #FFF; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 10px; color: #999; }
+        .item-slot:hover { border-color: #6E99C9; background: #F9F9F9; }
 
         #modal-overlay {
             display: none;
@@ -137,7 +144,7 @@
     <div class="nav-bar">
         <a onclick="window.location.reload()">Início</a>
         <a onclick="alert('Em breve!')">Jogos</a>
-        <a onclick="alert('Em breve!')">Catálogo</a>
+        <a onclick="abrirCatalogo()">Catálogo</a>
         <a onclick="alert('Em breve!')">Fórum</a>
     </div>
 
@@ -157,6 +164,7 @@
 
             <h3>Navegação</h3>
             <ul>
+                <li><a href="#" onclick="window.location.reload()">Página Inicial</a></li>
                 <li><a href="#">Meu Perfil</a></li>
                 <li><a href="#">Personagem</a></li>
                 <li><a href="#">Amigos</a></li>
@@ -172,8 +180,8 @@
             
             <div class="card" style="text-align:left; margin-top:20px;">
                 <h4>Notícias</h4>
-                <p style="font-size:11px">- Logo centralizado para melhor visualização!</p>
-                <p style="font-size:11px">- Novo sistema de cores de avatar ativo.</p>
+                <p style="font-size:11px">- Catálogo agora está disponível para visualização.</p>
+                <p style="font-size:11px">- Use o StudiaNet Launcher para uma melhor experiência.</p>
             </div>
         </main>
 
@@ -194,9 +202,33 @@
         function abrirModal() { document.getElementById('modal-overlay').style.display = 'block'; }
         function fecharModal() { document.getElementById('modal-overlay').style.display = 'none'; }
 
-        function baixarClient() {
-            alert('Iniciando download do StudiaNetSetup.exe...');
-            fecharModal();
+        function abrirCatalogo() {
+            const feed = document.getElementById('main-feed');
+            feed.innerHTML = `
+                <h2 style="margin-top:0;">Catálogo de Itens</h2>
+                <div class="catalog-container">
+                    <div class="catalog-filter">
+                        <b>Categorias</b><br><br>
+                        <input type="radio" name="cat" checked> Todos<br>
+                        <input type="radio" name="cat"> Chapéus<br>
+                        <input type="radio" name="cat"> Roupas<br>
+                        <input type="radio" name="cat"> Faces<br>
+                        <input type="radio" name="cat"> Equipáveis
+                    </div>
+                    <div class="catalog-main">
+                        <input type="text" class="search-bar" placeholder="Pesquisar itens...">
+                        <div class="item-grid">
+                            <div class="item-slot">No items yet.</div>
+                            <div class="item-slot">No items yet.</div>
+                            <div class="item-slot">No items yet.</div>
+                            <div class="item-slot">No items yet.</div>
+                            <div class="item-slot">No items yet.</div>
+                            <div class="item-slot">No items yet.</div>
+                        </div>
+                    </div>
+                </div>
+                <button onclick="window.location.reload()" style="margin-top:20px;">Voltar</button>
+            `;
         }
 
         function jogarNaWeb() {
