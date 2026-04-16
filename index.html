@@ -11,22 +11,30 @@
             cursor: default;
         }
 
-        body {
+        /* FUNDO FIXO QUE COBRE TUDO */
+        .bg-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1000;
             background-image: url('fundo.png');
             background-size: cover;
-            background-repeat: no-repeat;
             background-position: center;
-            background-attachment: fixed; /* Fixa o fundo para não sobrar cor sólida */
+            background-repeat: no-repeat;
+            background-color: #6E99C9;
+        }
+
+        body {
             margin: 0;
             padding: 0;
             color: #333;
-            background-color: #6E99C9;
             min-height: 100vh;
         }
         
         a, button, .btn-play, .logo-text, .grid-item { cursor: pointer; }
 
-        /* HEADER & LOGO */
         .logo-area { width: 900px; margin: 20px auto 5px auto; text-align: center; }
         .logo-text { 
             color: #CC0000; 
@@ -39,7 +47,6 @@
             display: block; 
         }
 
-        /* ECONOMY BAR */
         .economy-bar { 
             width: 900px; 
             margin: 0 auto 10px auto; 
@@ -55,7 +62,6 @@
         .snx-balance { color: #005500; }
         .tix-balance { color: #886600; }
 
-        /* NAV BAR */
         .nav-bar { 
             width: 900px; 
             margin: 0 auto; 
@@ -77,7 +83,6 @@
         }
         .nav-bar a:hover { background-color: #355C7D; }
 
-        /* MAIN CONTENT */
         .main-content { width: 900px; margin: 15px auto; display: flex; gap: 15px; }
         
         .sidebar, .feed, .card { 
@@ -90,12 +95,10 @@
         .feed { flex: 1; padding: 20px; min-height: 500px; }
         .right-panel { width: 200px; }
 
-        /* TEXT & HEADINGS */
         .large-text { font-size: 18px; line-height: 1.6; }
         h2 { font-size: 32px; margin-top: 0; color: #222; border-bottom: 2px solid #6E99C9; display: inline-block; margin-bottom: 15px; }
         h4 { font-size: 22px; margin-bottom: 10px; color: #333; }
 
-        /* INPUTS & FILTERS */
         .search-bar { width: 100%; padding: 8px; border: 1px solid #333; margin-bottom: 10px; font-size: 14px; }
         .filter-box { background: #EEE; padding: 10px; border: 1px solid #999; margin-bottom: 15px; font-size: 12px; }
 
@@ -109,7 +112,6 @@
         .card { padding: 12px; margin-bottom: 15px; text-align: center; }
         .avatar-box { width: 100%; height: 180px; background-color: #6E99C9; border: 1px solid #333; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px; text-shadow: 2px 2px 0px #000; }
 
-        /* CLUB CARDS */
         .club-container { display: flex; flex-direction: column; gap: 15px; }
         .club-card { border: 2px solid #333; padding: 15px; text-align: left; position: relative; box-shadow: 4px 4px 0px rgba(0,0,0,0.1); }
         .club-nada { background-color: #FFF; }
@@ -117,7 +119,7 @@
         .club-turbo { background-color: #E8F0FE; }
         .club-max { background-color: #FFF9E6; border: 3px solid #FFD700; }
 
-        #user-badge { font-size: 10px; font-weight: bold; padding: 3px 6px; color: white; display: inline-block; margin-top: 5px; text-transform: uppercase; border: 1px solid rgba(0,0,0,0.2); }
+        #user-badge { font-size: 10px; font-weight: bold; padding: 3px 6px; color: white; display: none; margin-top: 5px; text-transform: uppercase; border: 1px solid rgba(0,0,0,0.2); }
 
         .btn-play { background-color: #00CC00; border: 4px double #006600; color: white; font-size: 28px; font-weight: bold; padding: 15px; display: inline-block; margin-top: 10px; width: 100%; text-align: center; text-shadow: 2px 2px 0px #006600; transition: 0.1s; }
         .btn-play:active { transform: scale(0.98); }
@@ -125,7 +127,6 @@
         .grid-layout { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; margin-top: 15px; }
         .grid-item { border: 1px solid #333; padding: 10px; background: #FFF; text-align: center; font-size: 11px; }
 
-        /* MODAL */
         #modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); z-index: 1000; }
         #client-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #EEE; border: 3px solid #000; width: 420px; padding: 20px; text-align: center; box-shadow: 8px 8px 0px #333; }
 
@@ -133,6 +134,8 @@
     </style>
 </head>
 <body>
+
+    <div class="bg-fixed"></div>
 
     <div id="modal-overlay">
         <div id="client-modal">
@@ -277,11 +280,11 @@
             feed.innerHTML = `<h2>Guia para Parentes</h2>
             <div class="large-text" style="background:white; padding:20px; border:1px solid #333;">
                 <h4>O que é o StudiaNet?</h4>
-                <p>O StudiaNet é um mundo virtual focado em criatividade e educação, onde usuários podem construir seus próprios cenários e interagir em um ambiente moderado.</p>
+                <p>O StudiaNet é um mundo virtual focado em criatividade e educação.</p>
                 <h4>Segurança</h4>
-                <p>Nós levamos a segurança a sério. Contamos com sistemas de filtragem de chat e moderação para garantir que a experiência seja saudável para todas as idades.</p>
+                <p>Contamos com sistemas de filtragem de chat e moderação para garantir uma experiência saudável.</p>
                 <h4>Educação</h4>
-                <p>Ao criar mundos, os usuários aprendem noções básicas de lógica, design e socialização digital.</p>
+                <p>Ao criar mundos, os usuários aprendem noções básicas de lógica e design.</p>
             </div>`;
         }
 
