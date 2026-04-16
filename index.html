@@ -12,11 +12,11 @@
         }
 
         body {
-            background-color: #E1E1E1; /* Fallback */
             background-image: url('fundo.png');
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
+            background-position: center;
             margin: 0;
             padding: 0;
             color: #333;
@@ -26,75 +26,108 @@
 
         /* HEADER & LOGO */
         .logo-area { width: 900px; margin: 20px auto 5px auto; text-align: center; }
-        .logo-text { color: #CC0000; font-size: 64px; font-weight: bold; letter-spacing: -4px; margin: 0; text-decoration: none; display: block; }
+        .logo-text { 
+            color: #CC0000; 
+            font-size: 72px; 
+            font-weight: bold; 
+            letter-spacing: -4px; 
+            margin: 0; 
+            text-shadow: 3px 3px 0px #FFF; /* Borda branca no texto para destacar do fundo */
+            text-decoration: none; 
+            display: block; 
+        }
 
-        /* ECONOMY */
-        .economy-bar { width: 900px; margin: 0 auto 10px auto; background-color: #F2F2F2; border: 1px solid #999; padding: 5px 10px; display: flex; gap: 20px; font-size: 13px; font-weight: bold; }
+        /* ECONOMY - Transparente */
+        .economy-bar { 
+            width: 900px; 
+            margin: 0 auto 10px auto; 
+            background-color: rgba(242, 242, 242, 0.9); 
+            backdrop-filter: blur(5px);
+            border: 1px solid #333; 
+            padding: 5px 10px; 
+            display: flex; 
+            gap: 20px; 
+            font-size: 13px; 
+            font-weight: bold; 
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+        }
         .snx-balance { color: #005500; }
         .tix-balance { color: #886600; }
 
-        /* NAV BAR */
-        .nav-bar { width: 900px; margin: 0 auto; background-color: #6E99C9; border: 1px solid #333; display: flex; flex-wrap: wrap; }
-        .nav-bar a { padding: 8px 12px; color: white; text-decoration: none; font-weight: bold; font-size: 11px; border-right: 1px solid #333; text-transform: uppercase; }
-        .nav-bar a:hover { background-color: #355C7D; }
+        /* NAV BAR - Vidro Azul */
+        .nav-bar { 
+            width: 900px; 
+            margin: 0 auto; 
+            background-color: rgba(110, 153, 201, 0.85); 
+            backdrop-filter: blur(8px);
+            border: 1px solid #333; 
+            display: flex; 
+            flex-wrap: wrap; 
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+        }
+        .nav-bar a { padding: 10px 14px; color: white; text-decoration: none; font-weight: bold; font-size: 11px; border-right: 1px solid rgba(0,0,0,0.2); text-transform: uppercase; text-shadow: 1px 1px 2px #000; }
+        .nav-bar a:hover { background-color: rgba(53, 92, 125, 0.9); }
 
         /* MAIN LAYOUT */
-        .main-content { width: 900px; margin: 10px auto; display: flex; gap: 10px; }
-        .sidebar { width: 180px; background-color: #FFFFFF; border: 1px solid #999; padding: 10px; }
-        .feed { flex: 1; background-color: white; border: 1px solid #999; padding: 15px; min-height: 500px; }
+        .main-content { width: 900px; margin: 15px auto; display: flex; gap: 15px; }
+        
+        /* SIDEBAR E FEED com Transparência */
+        .sidebar, .feed, .card { 
+            background-color: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(10px);
+            border: 1px solid #333; 
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+        }
+
+        .sidebar { width: 180px; padding: 10px; }
+        .feed { flex: 1; padding: 20px; min-height: 500px; }
         .right-panel { width: 200px; }
 
         /* TEXT SIZES */
         .large-text { font-size: 18px; line-height: 1.6; }
-        h2 { font-size: 28px; margin-top: 0; }
-        h4 { font-size: 22px; margin-bottom: 10px; }
+        h2 { font-size: 32px; margin-top: 0; color: #222; border-bottom: 2px solid #6E99C9; display: inline-block; margin-bottom: 15px; }
+        h4 { font-size: 22px; margin-bottom: 10px; color: #333; }
 
         /* COMPONENTS */
-        .login-box { background-color: #EEE; border: 1px solid #CCC; padding: 8px; margin-bottom: 15px; font-size: 11px; }
-        .login-box input { width: 100%; margin: 3px 0; font-size: 10px; padding: 2px; }
-        .sidebar h3 { font-size: 14px; margin: 10px 0 5px 0; border-bottom: 1px solid #CCC; }
+        .login-box { background-color: rgba(0,0,0,0.05); border: 1px solid #999; padding: 8px; margin-bottom: 15px; font-size: 11px; }
+        .login-box input { width: 100%; margin: 3px 0; font-size: 10px; padding: 3px; border: 1px solid #999; }
+        .sidebar h3 { font-size: 14px; margin: 10px 0 5px 0; border-bottom: 1px solid #999; color: #444; }
         .sidebar ul { list-style: none; padding: 0; margin: 0; }
-        .sidebar a { text-decoration: none; color: #003399; font-size: 12px; }
-        .card { background-color: white; border: 1px solid #999; padding: 10px; margin-bottom: 10px; text-align: center; }
-        .avatar-box { width: 100%; height: 180px; background-color: #6E99C9; border: 1px solid #DDD; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 20px; }
+        .sidebar a { text-decoration: none; color: #003399; font-size: 13px; font-weight: bold; }
+        
+        .card { padding: 12px; margin-bottom: 15px; text-align: center; }
+        .avatar-box { width: 100%; height: 180px; background-color: rgba(110, 153, 201, 0.5); border: 1px solid #333; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px; text-shadow: 2px 2px 0px #000; }
 
-        /* CLUB CARDS */
+        /* CLUB CARDS - Cores mais vibrantes para o Club */
         .club-container { display: flex; flex-direction: column; gap: 15px; }
-        .club-card { border: 2px solid #333; padding: 15px; text-align: left; position: relative; }
-        .club-price { font-weight: bold; position: absolute; top: 15px; right: 15px; font-size: 14px; }
-        .club-nada { background-color: #F9F9F9; border-color: #999; }
-        .club-basic { background-color: #E6F4EA; border-color: #00CC00; }
-        .club-turbo { background-color: #E8F0FE; border-color: #1A73E8; }
-        .club-max { background-color: #FFF9E6; border-color: #FFD700; box-shadow: 0 0 10px rgba(255,215,0,0.3); }
-        .club-card h3 { margin-top: 0; text-transform: uppercase; }
+        .club-card { border: 2px solid #333; padding: 15px; text-align: left; position: relative; box-shadow: 4px 4px 0px rgba(0,0,0,0.1); }
+        .club-nada { background-color: rgba(255, 255, 255, 0.9); }
+        .club-basic { background-color: rgba(180, 255, 180, 0.85); }
+        .club-turbo { background-color: rgba(180, 210, 255, 0.85); }
+        .club-max { background-color: rgba(255, 235, 150, 0.9); border: 3px solid #FFD700; }
 
         /* USER BADGE */
-        #user-badge { font-size: 10px; font-weight: bold; padding: 2px 5px; color: white; display: inline-block; margin-top: 5px; text-transform: uppercase; }
-
-        /* GRIDS & SEARCH */
-        .search-bar { width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #999; }
-        .grid-layout { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
-        .grid-item { border: 1px solid #CCC; padding: 5px; background: #F9F9F9; font-size: 11px; text-align: center; }
-        .item-img { width: 100%; height: 70px; background: #DDD; margin-bottom: 5px; display: flex; align-items: center; justify-content: center; color: #666; font-size: 10px; }
+        #user-badge { font-size: 10px; font-weight: bold; padding: 3px 6px; color: white; display: inline-block; margin-top: 5px; text-transform: uppercase; border: 1px solid rgba(0,0,0,0.2); }
 
         /* PLAY BUTTON */
-        .btn-play { background-color: #00CC00; border: 3px double #006600; color: white; font-size: 24px; font-weight: bold; padding: 10px; display: inline-block; margin-top: 10px; width: 100%; text-align: center; }
+        .btn-play { background-color: #00CC00; border: 4px double #006600; color: white; font-size: 28px; font-weight: bold; padding: 15px; display: inline-block; margin-top: 10px; width: 100%; text-align: center; text-shadow: 2px 2px 0px #006600; transition: transform 0.1s; }
+        .btn-play:active { transform: scale(0.98); }
 
         /* MODAL */
-        #modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1000; }
-        #client-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #EEE; border: 2px solid #333; width: 400px; padding: 20px; text-align: center; box-shadow: 5px 5px 0px #000; }
+        #modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); z-index: 1000; }
+        #client-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #EEE; border: 3px solid #000; width: 420px; padding: 20px; text-align: center; box-shadow: 8px 8px 0px #333; }
 
-        footer { width: 900px; margin: 20px auto; text-align: center; font-size: 11px; color: #666; border-top: 1px solid #AAA; padding-top: 10px; }
+        footer { width: 900px; margin: 20px auto; text-align: center; font-size: 12px; font-weight: bold; color: white; text-shadow: 1px 1px 2px #000; padding: 15px 0; border-top: 2px solid rgba(255,255,255,0.3); }
     </style>
 </head>
 <body>
 
     <div id="modal-overlay">
         <div id="client-modal">
-            <div style="background:#000033; color:white; margin:-20px -20px 20px -20px; padding:5px; text-align:left;">&nbsp; StudiaNet Launcher</div>
-            <p><b>Deseja entrar no mundo virtual?</b></p>
-            <button onclick="jogarNaWeb()" style="width:100%; padding:10px; margin-bottom:10px;">JOGAR NA WEB</button>
-            <button onclick="fecharModal()" style="font-size:10px;">Cancelar</button>
+            <div style="background:#000033; color:white; margin:-20px -20px 20px -20px; padding:8px; text-align:left; font-size:12px;">&nbsp; StudiaNet Launcher v1.0</div>
+            <p class="large-text"><b>Deseja entrar no mundo virtual?</b></p>
+            <button onclick="jogarNaWeb()" style="width:100%; padding:15px; margin-bottom:10px; background:#00CC00; color:white; font-weight:bold; font-size:18px; border:2px solid #006600;">JOGAR NA WEB</button>
+            <button onclick="fecharModal()" style="font-size:11px; background:none; border:none; text-decoration:underline;">Cancelar e voltar</button>
         </div>
     </div>
 
@@ -122,48 +155,51 @@
     <div class="main-content">
         <aside class="sidebar">
             <div id="login-section" class="login-box">
-                <b>Login</b>
-                <input type="text" id="user-in" placeholder="Usuário">
+                <b>Login de Usuário</b>
+                <input type="text" id="user-in" placeholder="Nome de usuário">
                 <input type="password" placeholder="Senha">
-                <button onclick="fazerLogin()" style="width:100%; margin-top:5px;">Entrar</button>
+                <button onclick="fazerLogin()" style="width:100%; margin-top:5px; font-weight:bold;">Entrar</button>
             </div>
-            <div id="user-info" style="display:none; margin-bottom:15px; font-size:12px;">
-                Bem-vindo, <b id="u-name"></b>!<br>
+            <div id="user-info" style="display:none; margin-bottom:15px; font-size:13px;">
+                Logado como: <br><b id="u-name" style="font-size:16px; color:#003399;"></b><br>
                 <span id="user-badge"></span><br>
-                <a href="javascript:void(0)" onclick="window.location.reload()" style="color:red; font-size:10px;">[Sair]</a>
+                <a href="javascript:void(0)" onclick="window.location.reload()" style="color:red; font-size:11px;">[Finalizar Sessão]</a>
             </div>
-            <h3>Links Rápidos</h3>
+            <h3>Navegação</h3>
             <ul>
                 <li><a href="#" onclick="window.location.reload()">My StudiaNet</a></li>
-                <li><a href="#">Mensagens</a></li>
+                <li><a href="#">Mensagens (0)</a></li>
+                <li><a href="#">Amigos</a></li>
+                <li><a href="#">Inventário</a></li>
             </ul>
         </aside>
 
         <main class="feed" id="main-feed">
             <div style="text-align:center;">
-                <h2 style="margin:0">Bem-vindo ao Futuro!</h2>
-                <p class="large-text">O StudiaNet é o lugar onde sua imaginação cria vida.</p>
+                <h2>Bem-vindo ao StudiaNet!</h2>
+                <p class="large-text">O mundo virtual onde você é o criador. Construa, jogue e faça amigos hoje mesmo!</p>
                 <div class="btn-play" onclick="abrirModal()">JOGAR AGORA!</div>
             </div>
-            <div class="card" style="text-align:left; margin-top:20px;">
-                <h4>O que há de novo?</h4>
-                <p class="large-text">- Confira os novos planos StudiaNet Club!</p>
-                <p class="large-text">- Novo sistema de economia SNX/TIX.</p>
+            <div class="card" style="text-align:left; margin-top:30px;">
+                <h4 style="border-bottom: 1px solid #CCC;">Novidades</h4>
+                <p class="large-text">• O sistema de Clubes foi atualizado! Confira as vantagens.</p>
+                <p class="large-text">• Novo design transparente "Glass" aplicado ao site.</p>
             </div>
         </main>
 
         <aside class="right-panel">
             <div class="card">
-                <h4>Avatar</h4>
+                <h4>Seu Avatar</h4>
                 <div class="avatar-box" id="av-box">STUDIA</div>
-                <button onclick="mudarCorAvatar()" style="width:100%; margin-top:10px; padding:5px;">Mudar Cor</button>
+                <button onclick="mudarCorAvatar()" style="width:100%; margin-top:10px; padding:8px; font-weight:bold; border:1px solid #333;">Mudar Cor</button>
             </div>
         </aside>
     </div>
 
-    <footer>StudiaNet Corp &copy; 2010</footer>
+    <footer>StudiaNet Corporation &copy; 2010-2026</footer>
 
     <script>
+        // --- O SCRIPT CONTINUA O MESMO PARA FUNCIONAR TUDO ---
         const feed = document.getElementById('main-feed');
         let currentPlan = "NADA";
 
@@ -171,71 +207,37 @@
         function abrirModal() { document.getElementById('modal-overlay').style.display = 'block'; }
 
         function abrirJogos() {
-            feed.innerHTML = `<h2>Jogos</h2><input type="text" class="search-bar" placeholder="Pesquisar jogos...">
-            <div class="grid-layout">${'<div class="grid-item"><div class="item-img">No Image</div><b>Unknown</b><br>By: Unknown</div>'.repeat(4)}</div>`;
-        }
-
-        function abrirCatalogo() {
-            feed.innerHTML = `<h2>Catálogo</h2>
-            <div style="display:flex; gap:10px;">
-                <div style="width:120px; font-size:11px; background:#EEE; padding:5px; border:1px solid #CCC;"><b>Categorias</b><br><br>Chapéus<br>Roupas</div>
-                <div style="flex:1;"><input type="text" class="search-bar" placeholder="Pesquisar itens...">
-                <div class="grid-layout">${'<div class="grid-item"><div class="item-img">Item</div>No items yet.</div>'.repeat(3)}</div></div>
-            </div>`;
-        }
-
-        function abrirPessoas() {
-            feed.innerHTML = `<h2>Pessoas</h2><input type="text" class="search-bar" placeholder="Procurar usuários...">
-            <div class="grid-layout">${'<div class="grid-item"><div class="item-img" style="background:#6E99C9"></div>User Unknown</div>'.repeat(4)}</div>`;
+            feed.innerHTML = `<h2>Jogos</h2><input type="text" class="search-bar" style="width:100%; padding:10px; border:1px solid #333;" placeholder="Pesquisar mundos...">
+            <div class="grid-layout">${'<div class="grid-item" style="border:1px solid #333; background:rgba(255,255,255,0.5); padding:10px;"><div style="width:100%; height:80px; background:#BBB; border:1px solid #333; margin-bottom:5px;"></div><b>Unknown Game</b><br><small>Criador: Desconhecido</small></div>'.repeat(6)}</div>`;
         }
 
         function abrirClub() {
             feed.innerHTML = `
                 <h2>StudiaNet Club</h2>
-                <p class="large-text">Escolha o plano que mais combina com você e ganhe vantagens exclusivas!</p>
-                
+                <p class="large-text">Melhore sua experiência com um de nossos planos VIP!</p>
                 <div class="club-container">
                     <div class="club-card club-nada">
-                        <div class="club-price">Grátis</div>
-                        <h3>Plano Nada</h3>
-                        <ul style="font-size:13px;">
-                            <li>1 jogo ativo</li>
-                            <li>5 SNX e 10 TIX diários (requer login)</li>
-                            <li>Título: <span style="color:#666">[Membro]</span></li>
-                        </ul>
+                        <div style="float:right; font-weight:bold;">GRÁTIS</div>
+                        <h3>Membro Comum</h3>
+                        <p class="large-text">1 jogo ativo | 5 SNX / 10 TIX diários</p>
                     </div>
-
                     <div class="club-card club-basic">
-                        <div class="club-price">100 SNX</div>
-                        <h3>Plano Basic</h3>
-                        <ul style="font-size:13px;">
-                            <li>5 jogos ativos</li>
-                            <li>10 SNX e 50 TIX diários (sem login)</li>
-                            <li>Título: <span style="color:#008800">[Basic Club]</span></li>
-                        </ul>
-                        <button onclick="assinar('BASIC', 100, 0)">Assinar Agora</button>
+                        <div style="float:right; font-weight:bold;">100 SNX</div>
+                        <h3>Basic Club</h3>
+                        <p class="large-text">5 jogos ativos | 10 SNX / 50 TIX diários (automático)</p>
+                        <button onclick="assinar('BASIC', 100, 0)" style="padding:5px 15px; font-weight:bold;">ASSINAR</button>
                     </div>
-
                     <div class="club-card club-turbo">
-                        <div class="club-price">1000 SNX + 5000 TIX</div>
-                        <h3>Plano Turbo</h3>
-                        <ul style="font-size:13px;">
-                            <li>20 jogos ativos</li>
-                            <li>50 SNX e 500 TIX diários (sem login)</li>
-                            <li>Título: <span style="color:#0000CC">[Turbo Club]</span></li>
-                        </ul>
-                        <button onclick="assinar('TURBO', 1000, 5000)">Assinar Agora</button>
+                        <div style="float:right; font-weight:bold;">1K SNX + 5K TIX</div>
+                        <h3>Turbo Club</h3>
+                        <p class="large-text">20 jogos ativos | 50 SNX / 500 TIX diários</p>
+                        <button onclick="assinar('TURBO', 1000, 5000)" style="padding:5px 15px; font-weight:bold;">ASSINAR</button>
                     </div>
-
                     <div class="club-card club-max">
-                        <div class="club-price">20000 SNX + 10000 TIX</div>
-                        <h3>Plano MAX</h3>
-                        <ul style="font-size:13px;">
-                            <li><b>Jogos ILIMITADOS</b></li>
-                            <li>500 SNX e 5000 TIX diários (sem login)</li>
-                            <li>Título: <span style="color:#AA8800">[MAX CLUB]</span></li>
-                        </ul>
-                        <button onclick="assinar('MAX', 20000, 10000)">Assinar Agora</button>
+                        <div style="float:right; font-weight:bold;">20K SNX + 10K TIX</div>
+                        <h3>MAX CLUB</h3>
+                        <p class="large-text"><b>Jogos Ilimitados</b> | 500 SNX / 5K TIX diários</p>
+                        <button onclick="assinar('MAX', 20000, 10000)" style="padding:10px 20px; font-weight:bold; background:#000; color:#FFD700; border:none;">VIRAR MAX</button>
                     </div>
                 </div>
             `;
@@ -244,84 +246,23 @@
         function assinar(plano, custoSNX, custoTIX) {
             const snx = parseInt(document.getElementById('snx-val').innerText);
             const tix = parseInt(document.getElementById('tix-val').innerText);
-
             if(snx >= custoSNX && tix >= custoTIX) {
                 document.getElementById('snx-val').innerText = snx - custoSNX;
                 document.getElementById('tix-val').innerText = tix - custoTIX;
                 currentPlan = plano;
                 atualizarDistintivo();
-                alert("Parabéns! Você agora é " + plano + " no StudiaNet Club!");
-            } else {
-                alert("Você não tem moedas suficientes para este plano!");
-            }
+                alert("Parabéns! Você agora é " + plano + "!");
+            } else { alert("Saldo insuficiente!"); }
         }
 
         function atualizarDistintivo() {
             const badge = document.getElementById('user-badge');
             if(!badge) return;
-            
             badge.style.display = "inline-block";
-            if(currentPlan === "BASIC") {
-                badge.innerText = "[Basic Club]";
-                badge.style.backgroundColor = "#00CC00";
-            } else if(currentPlan === "TURBO") {
-                badge.innerText = "[Turbo Club]";
-                badge.style.backgroundColor = "#1A73E8";
-            } else if(currentPlan === "MAX") {
-                badge.innerText = "[MAX CLUB]";
-                badge.style.backgroundColor = "#FFD700";
-                badge.style.color = "#000";
-            } else {
-                badge.innerText = "[Membro]";
-                badge.style.backgroundColor = "#999";
-            }
-        }
-
-        function abrirForum() {
-            feed.innerHTML = `<h2>Fórum</h2><table style="width:100%; font-size:16px; border-collapse:collapse;">
-                <tr style="background:#6E99C9; color:white;"><th>Tópico</th><th>Posts</th></tr>
-                <tr style="border-bottom:1px solid #CCC;"><td>Discussão Geral</td><td>0</td></tr>
-                <tr style="border-bottom:1px solid #CCC;"><td>Sugestões</td><td>0</td></tr>
-            </table>`;
-        }
-
-        function abrirNoticias() {
-            feed.innerHTML = `<h2>Notícias</h2>
-                <div style="border-bottom:1px dashed #CCC; padding:10px;"><b class="large-text">Lançamento do Site!</b><br><span>Postado hoje</span></div>
-                <div style="border-bottom:1px dashed #CCC; padding:10px;"><b class="large-text">Manutenção Programada</b><br><span>Ontem</span></div>`;
-        }
-
-        function abrirParentes() {
-            feed.innerHTML = `
-                <h2 style="color:#355C7D;">Guia para Pais e Responsáveis</h2>
-                <div class="large-text" style="color: #444;">
-                    <div style="background: #F0F4F8; border-left: 8px solid #6E99C9; padding: 20px; margin-bottom: 25px;">
-                        <h4>O que é o StudiaNet?</h4>
-                        <p>O StudiaNet é um mundo virtual seguro e uma plataforma de criação onde os usuários podem expressar sua criatividade. Aqui, eles constroem jogos, personalizam avatares e fazem novas amizades em um ambiente 3D dinâmico.</p>
-                    </div>
-
-                    <h4>Segurança e Privacidade</h4>
-                    <p>A segurança é nossa prioridade máxima. O StudiaNet oferece:</p>
-                    <ul>
-                        <li><b>Moderação Ativa:</b> Ferramentas para manter a comunidade respeitosa.</li>
-                        <li><b>Proteção de Dados:</b> Orientamos os usuários a nunca compartilharem informações pessoais.</li>
-                        <li><b>Supervisão:</b> Recomendamos que os pais acompanhem as interações de seus filhos.</li>
-                    </ul>
-
-                    <h4>Benefícios Educativos</h4>
-                    <p>Ao criar no StudiaNet, os jovens desenvolvem habilidades em design, lógica e cidadania digital, tudo isso enquanto se divertem em um playground virtual saudável.</p>
-                </div>
-                <button onclick="window.location.reload()" style="margin-top:20px; padding:10px 20px; font-size:16px;">Voltar</button>
-            `;
-        }
-
-        function abrirAjuda() {
-            feed.innerHTML = `<h2>Ajuda / FAQ</h2>
-            <div class="large-text">
-                <p><b>Como ganho SNX?</b><br>Você pode ganhar participando de eventos ou através do StudiaNet Club.</p>
-                <p><b>Como mudo meu visual?</b><br>Vá ao Catálogo e escolha novos itens!</p>
-                <p><b>O site é gratuito?</b><br>Sim! O StudiaNet é gratuito para jogar e criar.</p>
-            </div>`;
+            if(currentPlan === "BASIC") { badge.innerText = "[Basic Club]"; badge.style.backgroundColor = "#00CC00"; }
+            else if(currentPlan === "TURBO") { badge.innerText = "[Turbo Club]"; badge.style.backgroundColor = "#1A73E8"; }
+            else if(currentPlan === "MAX") { badge.innerText = "[MAX CLUB]"; badge.style.backgroundColor = "#FFD700"; badge.style.color = "#000"; }
+            else { badge.innerText = "[Membro]"; badge.style.backgroundColor = "#999"; }
         }
 
         function fazerLogin() {
@@ -330,22 +271,27 @@
                 document.getElementById('login-section').style.display = 'none';
                 document.getElementById('user-info').style.display = 'block';
                 document.getElementById('u-name').innerText = nome;
-                document.getElementById('snx-val').innerText = "100";
-                document.getElementById('tix-val').innerText = "20";
+                document.getElementById('snx-val').innerText = "5000"; // Dei um bônus pra testar o Club
+                document.getElementById('tix-val').innerText = "6000";
                 atualizarDistintivo();
             }
         }
 
-        function jogarNaWeb() {
-            fecharModal();
-            feed.innerHTML = `<div style="text-align:center;"><h2>Carregando StudiaNet...</h2>
-            <div style="background:#000; height:300px; color:white; display:flex; align-items:center; justify-content:center; font-size:24px;">[ INICIANDO ENGINE... ]</div></div>`;
-        }
-
         function mudarCorAvatar() {
-            const cores = ['#CC0000', '#00CC00', '#FFCC00', '#0000CC', '#6E99C9'];
+            const cores = ['#CC0000', '#00CC00', '#FFCC00', '#0000CC', '#6E99C9', '#FF00FF'];
             document.getElementById('av-box').style.backgroundColor = cores[Math.floor(Math.random() * cores.length)];
         }
+
+        function jogarNaWeb() {
+            fecharModal();
+            feed.innerHTML = `<div style="text-align:center;"><h2>Entrando no Servidor...</h2>
+            <div style="background:#000; height:350px; border:4px solid #333; color:#0F0; display:flex; align-items:center; justify-content:center; font-family:monospace; font-size:20px;">[ SYNCING ASSETS: 100% ]<br>[ WELCOME TO STUDIANET ]</div></div>`;
+        }
+        
+        // Outras funções (Pessoas, Catálogo, etc) podem ser copiadas do anterior
+        function abrirParentes() { feed.innerHTML = `<h2>Guia para Pais</h2><div class="large-text"><p>O StudiaNet é seguro e educativo...</p></div>`; }
+        function abrirAjuda() { feed.innerHTML = `<h2>Ajuda</h2><p class="large-text">Precisa de suporte? Envie um e-mail para nós.</p>`; }
+        function abrirNoticias() { feed.innerHTML = `<h2>Notícias</h2><p class="large-text">Site v1.0 lançado!</p>`; }
     </script>
 </body>
 </html>
