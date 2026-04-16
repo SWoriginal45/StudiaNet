@@ -4,156 +4,58 @@
     <meta charset="UTF-8">
     <title>StudiaNet: A Virtual World for Users!</title>
     <style>
-        /* CSS Reset e Estética 2010 */
         * {
             font-family: "Comic Sans MS", "Comic Sans", cursive;
             box-sizing: border-box;
             border-radius: 0 !important;
+            cursor: default;
         }
 
-        body {
-            background-color: #E1E1E1;
-            margin: 0;
-            padding: 0;
-            color: #333;
-        }
+        body { background-color: #E1E1E1; margin: 0; padding: 0; color: #333; }
+        
+        a, button, .btn-play, .logo-text, .grid-item { cursor: pointer; }
 
-        /* Área do Logo (Agora no topo absoluto) */
-        .logo-area {
-            width: 900px;
-            margin: 20px auto 5px auto;
-        }
+        /* HEADER & LOGO */
+        .logo-area { width: 900px; margin: 20px auto 5px auto; text-align: center; }
+        .logo-text { color: #CC0000; font-size: 64px; font-weight: bold; letter-spacing: -4px; margin: 0; text-decoration: none; display: block; }
 
-        .logo-text {
-            color: #CC0000;
-            font-size: 64px;
-            font-weight: bold;
-            letter-spacing: -4px;
-            margin: 0;
-            text-decoration: none;
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        /* BARRA DE MOEDAS */
-        .economy-bar {
-            width: 900px;
-            margin: 0 auto 10px auto;
-            background-color: #F2F2F2;
-            border: 1px solid #999;
-            padding: 5px 10px;
-            display: flex;
-            gap: 20px;
-            font-size: 13px;
-            font-weight: bold;
-        }
-
+        /* ECONOMY */
+        .economy-bar { width: 900px; margin: 0 auto 10px auto; background-color: #F2F2F2; border: 1px solid #999; padding: 5px 10px; display: flex; gap: 20px; font-size: 13px; font-weight: bold; }
         .snx-balance { color: #005500; }
         .tix-balance { color: #886600; }
 
-        /* Menu de Navegação */
-        .nav-bar {
-            width: 900px;
-            margin: 0 auto;
-            background-color: #6E99C9;
-            border: 1px solid #333;
-            display: flex;
-        }
-
-        .nav-bar a {
-            padding: 8px 15px;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 12px;
-            border-right: 1px solid #333;
-            text-transform: uppercase;
-            cursor: pointer;
-        }
-
+        /* NAV BAR */
+        .nav-bar { width: 900px; margin: 0 auto; background-color: #6E99C9; border: 1px solid #333; display: flex; flex-wrap: wrap; }
+        .nav-bar a { padding: 8px 12px; color: white; text-decoration: none; font-weight: bold; font-size: 11px; border-right: 1px solid #333; text-transform: uppercase; }
         .nav-bar a:hover { background-color: #355C7D; }
 
-        /* Conteúdo */
-        .main-content {
-            width: 900px;
-            margin: 10px auto;
-            display: flex;
-            gap: 10px;
-        }
+        /* MAIN LAYOUT */
+        .main-content { width: 900px; margin: 10px auto; display: flex; gap: 10px; }
+        .sidebar { width: 180px; background-color: #FFFFFF; border: 1px solid #999; padding: 10px; }
+        .feed { flex: 1; background-color: white; border: 1px solid #999; padding: 15px; min-height: 500px; }
+        .right-panel { width: 200px; }
 
-        /* Sidebar com Login Integrado */
-        .sidebar {
-            width: 180px;
-            background-color: #FFFFFF;
-            border: 1px solid #999;
-            padding: 10px;
-        }
-
-        .login-box {
-            background-color: #EEE;
-            border: 1px solid #CCC;
-            padding: 8px;
-            margin-bottom: 15px;
-            font-size: 11px;
-        }
-
-        .login-box input {
-            width: 100%;
-            margin: 3px 0;
-            font-size: 10px;
-        }
-
+        /* COMPONENTS */
+        .login-box { background-color: #EEE; border: 1px solid #CCC; padding: 8px; margin-bottom: 15px; font-size: 11px; }
+        .login-box input { width: 100%; margin: 3px 0; font-size: 10px; padding: 2px; }
         .sidebar h3 { font-size: 14px; margin: 10px 0 5px 0; border-bottom: 1px solid #CCC; }
         .sidebar ul { list-style: none; padding: 0; margin: 0; }
-        .sidebar a { text-decoration: none; color: #003399; font-size: 12px; cursor: pointer; }
-
-        /* Área Central */
-        .feed { flex: 1; background-color: white; border: 1px solid #999; padding: 15px; min-height: 400px; }
-
-        .welcome-panel {
-            border: 1px solid #CCC;
-            background-color: #F8F8F8;
-            padding: 15px;
-            text-align: center;
-        }
-
-        .btn-play {
-            background-color: #00CC00;
-            border: 3px double #006600;
-            color: white;
-            font-size: 28px;
-            font-weight: bold;
-            padding: 10px 40px;
-            cursor: pointer;
-            display: inline-block;
-            margin-top: 10px;
-        }
-
-        /* Modal do Client */
-        #modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            z-index: 1000;
-        }
-
-        #client-modal {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #EEE;
-            border: 2px solid #333;
-            width: 400px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 5px 5px 0px #000;
-        }
-
-        /* Widgets Direita */
-        .right-panel { width: 200px; }
+        .sidebar a { text-decoration: none; color: #003399; font-size: 12px; }
         .card { background-color: white; border: 1px solid #999; padding: 10px; margin-bottom: 10px; text-align: center; }
-        .avatar-box { width: 100%; height: 180px; background-color: #6E99C9; border: 1px solid #DDD; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; }
+        .avatar-box { width: 100%; height: 180px; background-color: #6E99C9; border: 1px solid #DDD; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 20px; }
+
+        /* GRIDS & SEARCH */
+        .search-bar { width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #999; }
+        .grid-layout { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+        .grid-item { border: 1px solid #CCC; padding: 5px; background: #F9F9F9; font-size: 11px; text-align: center; }
+        .item-img { width: 100%; height: 70px; background: #DDD; margin-bottom: 5px; display: flex; align-items: center; justify-content: center; color: #666; font-size: 10px; }
+
+        /* PLAY BUTTON */
+        .btn-play { background-color: #00CC00; border: 3px double #006600; color: white; font-size: 24px; font-weight: bold; padding: 10px; display: inline-block; margin-top: 10px; width: 100%; text-align: center; }
+
+        /* MODAL */
+        #modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 1000; }
+        #client-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #EEE; border: 2px solid #333; width: 400px; padding: 20px; text-align: center; box-shadow: 5px 5px 0px #000; }
 
         footer { width: 900px; margin: 20px auto; text-align: center; font-size: 11px; color: #666; border-top: 1px solid #AAA; padding-top: 10px; }
     </style>
@@ -163,63 +65,62 @@
     <div id="modal-overlay">
         <div id="client-modal">
             <div style="background:#000033; color:white; margin:-20px -20px 20px -20px; padding:5px; text-align:left;">&nbsp; StudiaNet Launcher</div>
-            <b>Como deseja jogar?</b>
-            <div style="display:flex; flex-direction:column; gap:10px; margin-top:20px;">
-                <button onclick="alert('Baixando...'); fecharModal()" style="background:#FFCC00; padding:10px; cursor:pointer; font-weight:bold; border:1px solid #333;">BAIXAR CLIENT</button>
-                <button onclick="alert('Carregando Web Player...'); fecharModal()" style="background:#DDD; padding:10px; cursor:pointer; border:1px solid #333;">JOGAR NA WEB</button>
-                <button onclick="fecharModal()" style="font-size:10px;">Cancelar</button>
-            </div>
+            <p><b>Deseja entrar no mundo virtual?</b></p>
+            <button onclick="jogarNaWeb()" style="width:100%; padding:10px; margin-bottom:10px;">JOGAR NA WEB</button>
+            <button onclick="fecharModal()" style="font-size:10px;">Cancelar</button>
         </div>
     </div>
 
     <div class="logo-area">
-        <h1 class="logo-text" onclick="window.location.reload()">StudiaNet</h1>
+        <div class="logo-text" onclick="window.location.reload()">StudiaNet</div>
     </div>
 
     <div class="economy-bar">
-        <span class="snx-balance">SNX: <span id="snx-val">0</span></span>
-        <span class="tix-balance">TIX: <span id="tix-val">0</span></span>
+        <span>SNX: <b id="snx-val" class="snx-balance">0</b></span>
+        <span>TIX: <b id="tix-val" class="tix-balance">0</b></span>
     </div>
 
-    <div class="nav-bar">
+    <nav class="nav-bar">
         <a onclick="window.location.reload()">Início</a>
-        <a>Jogos</a>
-        <a>Catálogo</a>
-        <a>Fórum</a>
-    </div>
+        <a onclick="abrirJogos()">Jogos</a>
+        <a onclick="abrirCatalogo()">Catálogo</a>
+        <a onclick="abrirPessoas()">Pessoas</a>
+        <a onclick="abrirClub()">StudiaNet Club</a>
+        <a onclick="abrirForum()">Fórum</a>
+        <a onclick="abrirNoticias()">Notícias</a>
+        <a onclick="abrirParentes()">Parentes</a>
+        <a onclick="abrirAjuda()">Ajuda</a>
+    </nav>
 
     <div class="main-content">
         <aside class="sidebar">
-            <div class="login-box" id="login-section">
+            <div id="login-section" class="login-box">
                 <b>Login</b>
                 <input type="text" id="user-in" placeholder="Usuário">
                 <input type="password" placeholder="Senha">
-                <button onclick="login()" style="width:100%; font-size:10px; cursor:pointer;">Entrar</button>
+                <button onclick="fazerLogin()" style="width:100%; margin-top:5px;">Entrar</button>
             </div>
-            
             <div id="user-info" style="display:none; margin-bottom:15px; font-size:12px;">
                 Bem-vindo, <b id="u-name"></b>!<br>
-                <a href="#" onclick="window.location.reload()" style="font-size:10px; color:red;">[Sair]</a>
+                <a href="javascript:void(0)" onclick="window.location.reload()" style="color:red;">[Sair]</a>
             </div>
-
-            <h3>Navegação</h3>
+            <h3>Links Rápidos</h3>
             <ul>
-                <li><a>Meu Perfil</a></li>
-                <li><a>Personagem</a></li>
-                <li><a>Amigos</a></li>
+                <li><a href="#" onclick="window.location.reload()">My StudiaNet</a></li>
+                <li><a href="#">Mensagens</a></li>
             </ul>
         </aside>
 
-        <main class="feed">
-            <div class="welcome-panel">
-                <h2 style="margin:0">O mundo é seu!</h2>
-                <p>Crie, jogue e compartilhe no StudiaNet.</p>
+        <main class="feed" id="main-feed">
+            <div style="text-align:center;">
+                <h2 style="margin:0">Bem-vindo ao Futuro!</h2>
+                <p>O StudiaNet é o lugar onde sua imaginação cria vida.</p>
                 <div class="btn-play" onclick="abrirModal()">JOGAR AGORA!</div>
             </div>
-            
             <div class="card" style="text-align:left; margin-top:20px;">
-                <h4>Notícias</h4>
-                <p style="font-size:11px">- Bem-vindo ao StudiaNet versão 2010!</p>
+                <h4>O que há de novo?</h4>
+                <p style="font-size:11px">- Todas as páginas do menu estão online!</p>
+                <p style="font-size:11px">- Novo sistema de economia SNX/TIX.</p>
             </div>
         </main>
 
@@ -227,35 +128,96 @@
             <div class="card">
                 <h4>Avatar</h4>
                 <div class="avatar-box" id="av-box">STUDIA</div>
-                <button onclick="mudarCor()" style="width:100%; margin-top:5px; font-size:11px; cursor:pointer;">Mudar Cor</button>
+                <button onclick="mudarCorAvatar()" style="width:100%; margin-top:10px; padding:5px;">Mudar Cor</button>
             </div>
         </aside>
     </div>
 
-    <footer>
-        StudiaNet Corp &copy; 2010 | "Sua imaginação, seu jogo"
-    </footer>
+    <footer>StudiaNet Corp &copy; 2010</footer>
 
     <script>
-        function abrirModal() { document.getElementById('modal-overlay').style.display = 'block'; }
-        function fecharModal() { document.getElementById('modal-overlay').style.display = 'none'; }
+        const feed = document.getElementById('main-feed');
 
-        function login() {
-            let nome = document.getElementById('user-in').value;
-            if(nome !== "") {
+        function fecharModal() { document.getElementById('modal-overlay').style.display = 'none'; }
+        function abrirModal() { document.getElementById('modal-overlay').style.display = 'block'; }
+
+        // --- PÁGINAS ---
+
+        function abrirJogos() {
+            feed.innerHTML = `<h2>Jogos</h2><input type="text" class="search-bar" placeholder="Pesquisar jogos...">
+            <div class="grid-layout">${'<div class="grid-item"><div class="item-img">No Image</div><b>Unknown</b><br>By: Unknown</div>'.repeat(4)}</div>`;
+        }
+
+        function abrirCatalogo() {
+            feed.innerHTML = `<h2>Catálogo</h2>
+            <div style="display:flex; gap:10px;">
+                <div style="width:120px; font-size:11px; background:#EEE; padding:5px; border:1px solid #CCC;"><b>Categorias</b><br><br>Chapéus<br>Roupas</div>
+                <div style="flex:1;"><input type="text" class="search-bar" placeholder="Pesquisar itens...">
+                <div class="grid-layout">${'<div class="grid-item"><div class="item-img">Item</div>No items yet.</div>'.repeat(3)}</div></div>
+            </div>`;
+        }
+
+        function abrirPessoas() {
+            feed.innerHTML = `<h2>Pessoas</h2><input type="text" class="search-bar" placeholder="Procurar usuários...">
+            <div class="grid-layout">${'<div class="grid-item"><div class="item-img" style="background:#6E99C9"></div>User Unknown</div>'.repeat(4)}</div>`;
+        }
+
+        function abrirClub() {
+            feed.innerHTML = `<div style="text-align:center; border:2px solid #FFD700; padding:20px; background:#FFF9E6;">
+                <h2 style="color:#AA8800">StudiaNet Club</h2>
+                <p>Torne-se um membro VIP e ganhe TIX diariamente!</p>
+                <button style="padding:10px; background:#FFD700; font-weight:bold;">VER PLANOS</button>
+            </div>`;
+        }
+
+        function abrirForum() {
+            feed.innerHTML = `<h2>Fórum</h2><table style="width:100%; font-size:12px; border-collapse:collapse;">
+                <tr style="background:#6E99C9; color:white;"><th>Tópico</th><th>Posts</th></tr>
+                <tr style="border-bottom:1px solid #CCC;"><td>Discussão Geral</td><td>0</td></tr>
+                <tr style="border-bottom:1px solid #CCC;"><td>Sugestões</td><td>0</td></tr>
+            </table>`;
+        }
+
+        function abrirNoticias() {
+            feed.innerHTML = `<h2>Notícias</h2>
+                <div style="border-bottom:1px dashed #CCC; padding:10px;"><b>Lançamento do Site!</b><br><small>Postado hoje</small></div>
+                <div style="border-bottom:1px dashed #CCC; padding:10px;"><b>Manutenção Programada</b><br><small>Ontem</small></div>`;
+        }
+
+        function abrirParentes() {
+            feed.innerHTML = `<h2>Parentes</h2><p style="font-size:12px;">Esta área é dedicada à segurança e informações para os pais/responsáveis.</p>
+            <div class="card" style="text-align:left">Guia de Segurança Virtual</div>`;
+        }
+
+        function abrirAjuda() {
+            feed.innerHTML = `<h2>Ajuda / FAQ</h2>
+            <div style="font-size:12px;"><b>Como ganho SNX?</b><br>Jogando e participando de eventos.<br><br>
+            <b>Esqueci minha senha</b><br>Entre em contato com o suporte.</div>`;
+        }
+
+        // --- SISTEMAS ---
+
+        function fazerLogin() {
+            const nome = document.getElementById('user-in').value;
+            if(nome.trim()) {
                 document.getElementById('login-section').style.display = 'none';
                 document.getElementById('user-info').style.display = 'block';
                 document.getElementById('u-name').innerText = nome;
-                document.getElementById('snx-val').innerText = "50";
-                document.getElementById('tix-val').innerText = "10";
+                document.getElementById('snx-val').innerText = "100";
+                document.getElementById('tix-val').innerText = "20";
             }
         }
 
-        function mudarCor() {
+        function jogarNaWeb() {
+            fecharModal();
+            feed.innerHTML = `<div style="text-align:center;"><h2>Carregando StudiaNet...</h2>
+            <div style="background:#000; height:300px; color:white; display:flex; align-items:center; justify-content:center;">[ INICIANDO ENGINE... ]</div></div>`;
+        }
+
+        function mudarCorAvatar() {
             const cores = ['#CC0000', '#00CC00', '#FFCC00', '#0000CC', '#6E99C9'];
             document.getElementById('av-box').style.backgroundColor = cores[Math.floor(Math.random() * cores.length)];
         }
     </script>
-
 </body>
 </html>
