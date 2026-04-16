@@ -12,11 +12,15 @@
         }
 
         body {
-    background-image: url('fundo.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
+            background-color: #E1E1E1; /* Fallback */
+            background-image: url('fundo.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
         
         a, button, .btn-play, .logo-text, .grid-item { cursor: pointer; }
 
@@ -53,6 +57,19 @@
         .sidebar a { text-decoration: none; color: #003399; font-size: 12px; }
         .card { background-color: white; border: 1px solid #999; padding: 10px; margin-bottom: 10px; text-align: center; }
         .avatar-box { width: 100%; height: 180px; background-color: #6E99C9; border: 1px solid #DDD; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 20px; }
+
+        /* CLUB CARDS */
+        .club-container { display: flex; flex-direction: column; gap: 15px; }
+        .club-card { border: 2px solid #333; padding: 15px; text-align: left; position: relative; }
+        .club-price { font-weight: bold; position: absolute; top: 15px; right: 15px; font-size: 14px; }
+        .club-nada { background-color: #F9F9F9; border-color: #999; }
+        .club-basic { background-color: #E6F4EA; border-color: #00CC00; }
+        .club-turbo { background-color: #E8F0FE; border-color: #1A73E8; }
+        .club-max { background-color: #FFF9E6; border-color: #FFD700; box-shadow: 0 0 10px rgba(255,215,0,0.3); }
+        .club-card h3 { margin-top: 0; text-transform: uppercase; }
+
+        /* USER BADGE */
+        #user-badge { font-size: 10px; font-weight: bold; padding: 2px 5px; color: white; display: inline-block; margin-top: 5px; text-transform: uppercase; }
 
         /* GRIDS & SEARCH */
         .search-bar { width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #999; }
@@ -112,7 +129,8 @@
             </div>
             <div id="user-info" style="display:none; margin-bottom:15px; font-size:12px;">
                 Bem-vindo, <b id="u-name"></b>!<br>
-                <a href="javascript:void(0)" onclick="window.location.reload()" style="color:red;">[Sair]</a>
+                <span id="user-badge"></span><br>
+                <a href="javascript:void(0)" onclick="window.location.reload()" style="color:red; font-size:10px;">[Sair]</a>
             </div>
             <h3>Links Rápidos</h3>
             <ul>
@@ -129,7 +147,7 @@
             </div>
             <div class="card" style="text-align:left; margin-top:20px;">
                 <h4>O que há de novo?</h4>
-                <p class="large-text">- Todas as páginas do menu estão online!</p>
+                <p class="large-text">- Confira os novos planos StudiaNet Club!</p>
                 <p class="large-text">- Novo sistema de economia SNX/TIX.</p>
             </div>
         </main>
@@ -147,6 +165,7 @@
 
     <script>
         const feed = document.getElementById('main-feed');
+        let currentPlan = "NADA";
 
         function fecharModal() { document.getElementById('modal-overlay').style.display = 'none'; }
         function abrirModal() { document.getElementById('modal-overlay').style.display = 'block'; }
@@ -171,11 +190,91 @@
         }
 
         function abrirClub() {
-            feed.innerHTML = `<div style="text-align:center; border:2px solid #FFD700; padding:20px; background:#FFF9E6;">
-                <h2 style="color:#AA8800">StudiaNet Club</h2>
-                <p class="large-text">Torne-se um membro VIP e ganhe TIX diariamente!</p>
-                <button style="padding:15px; background:#FFD700; font-weight:bold; font-size:18px;">VER PLANOS</button>
-            </div>`;
+            feed.innerHTML = `
+                <h2>StudiaNet Club</h2>
+                <p class="large-text">Escolha o plano que mais combina com você e ganhe vantagens exclusivas!</p>
+                
+                <div class="club-container">
+                    <div class="club-card club-nada">
+                        <div class="club-price">Grátis</div>
+                        <h3>Plano Nada</h3>
+                        <ul style="font-size:13px;">
+                            <li>1 jogo ativo</li>
+                            <li>5 SNX e 10 TIX diários (requer login)</li>
+                            <li>Título: <span style="color:#666">[Membro]</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="club-card club-basic">
+                        <div class="club-price">100 SNX</div>
+                        <h3>Plano Basic</h3>
+                        <ul style="font-size:13px;">
+                            <li>5 jogos ativos</li>
+                            <li>10 SNX e 50 TIX diários (sem login)</li>
+                            <li>Título: <span style="color:#008800">[Basic Club]</span></li>
+                        </ul>
+                        <button onclick="assinar('BASIC', 100, 0)">Assinar Agora</button>
+                    </div>
+
+                    <div class="club-card club-turbo">
+                        <div class="club-price">1000 SNX + 5000 TIX</div>
+                        <h3>Plano Turbo</h3>
+                        <ul style="font-size:13px;">
+                            <li>20 jogos ativos</li>
+                            <li>50 SNX e 500 TIX diários (sem login)</li>
+                            <li>Título: <span style="color:#0000CC">[Turbo Club]</span></li>
+                        </ul>
+                        <button onclick="assinar('TURBO', 1000, 5000)">Assinar Agora</button>
+                    </div>
+
+                    <div class="club-card club-max">
+                        <div class="club-price">20000 SNX + 10000 TIX</div>
+                        <h3>Plano MAX</h3>
+                        <ul style="font-size:13px;">
+                            <li><b>Jogos ILIMITADOS</b></li>
+                            <li>500 SNX e 5000 TIX diários (sem login)</li>
+                            <li>Título: <span style="color:#AA8800">[MAX CLUB]</span></li>
+                        </ul>
+                        <button onclick="assinar('MAX', 20000, 10000)">Assinar Agora</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function assinar(plano, custoSNX, custoTIX) {
+            const snx = parseInt(document.getElementById('snx-val').innerText);
+            const tix = parseInt(document.getElementById('tix-val').innerText);
+
+            if(snx >= custoSNX && tix >= custoTIX) {
+                document.getElementById('snx-val').innerText = snx - custoSNX;
+                document.getElementById('tix-val').innerText = tix - custoTIX;
+                currentPlan = plano;
+                atualizarDistintivo();
+                alert("Parabéns! Você agora é " + plano + " no StudiaNet Club!");
+            } else {
+                alert("Você não tem moedas suficientes para este plano!");
+            }
+        }
+
+        function atualizarDistintivo() {
+            const badge = document.getElementById('user-badge');
+            if(!badge) return;
+            
+            badge.style.display = "inline-block";
+            if(currentPlan === "BASIC") {
+                badge.innerText = "[Basic Club]";
+                badge.style.backgroundColor = "#00CC00";
+            } else if(currentPlan === "TURBO") {
+                badge.innerText = "[Turbo Club]";
+                badge.style.backgroundColor = "#1A73E8";
+            } else if(currentPlan === "MAX") {
+                badge.innerText = "[MAX CLUB]";
+                badge.style.backgroundColor = "#FFD700";
+                badge.style.color = "#000";
+            } else {
+                badge.innerText = "[Membro]";
+                badge.style.backgroundColor = "#999";
+            }
         }
 
         function abrirForum() {
@@ -233,6 +332,7 @@
                 document.getElementById('u-name').innerText = nome;
                 document.getElementById('snx-val').innerText = "100";
                 document.getElementById('tix-val').innerText = "20";
+                atualizarDistintivo();
             }
         }
 
