@@ -4,40 +4,38 @@
     <meta charset="UTF-8">
     <title>StudiaNet: A Virtual World for Users!</title>
     <style>
+        /* CSS Reset e Estética 2010 */
         * {
             font-family: "Comic Sans MS", "Comic Sans", cursive;
             box-sizing: border-box;
             border-radius: 0 !important;
-            cursor: default;
         }
 
         body {
-            background-color: #E1E1E1;
+            background-color: #8EB1E0; /* O fundo azul clássico de 2010 */
             margin: 0;
             padding: 0;
             color: #333;
         }
 
-        a, button, .btn-play, .logo-text, .item-slot, .game-card {
+        /* Área do Logo */
+        .logo-area {
+            width: 900px;
+            margin: 20px auto 5px auto;
+        }
+
+        .logo-text {
+            color: #CC0000;
+            font-size: 64px;
+            font-weight: bold;
+            letter-spacing: -4px;
+            margin: 0;
+            text-decoration: none;
+            display: inline-block;
             cursor: pointer;
         }
 
-        .logo-area { 
-            width: 900px; 
-            margin: 20px auto 5px auto; 
-            text-align: center; 
-        }
-        
-        .logo-text { 
-            color: #CC0000; 
-            font-size: 64px; 
-            font-weight: bold; 
-            letter-spacing: -4px; 
-            margin: 0; 
-            text-decoration: none; 
-            display: block; 
-        }
-
+        /* BARRA DE MOEDAS */
         .economy-bar {
             width: 900px;
             margin: 0 auto 10px auto;
@@ -53,32 +51,85 @@
         .snx-balance { color: #005500; }
         .tix-balance { color: #886600; }
 
-        .nav-bar { width: 900px; margin: 0 auto; background-color: #6E99C9; border: 1px solid #333; display: flex; }
-        .nav-bar a { padding: 8px 15px; color: white; text-decoration: none; font-weight: bold; font-size: 12px; border-right: 1px solid #333; text-transform: uppercase; }
+        /* Menu de Navegação */
+        .nav-bar {
+            width: 900px;
+            margin: 0 auto;
+            background-color: #6E99C9;
+            border: 1px solid #333;
+            display: flex;
+        }
+
+        .nav-bar a {
+            padding: 8px 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 12px;
+            border-right: 1px solid #333;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
         .nav-bar a:hover { background-color: #355C7D; }
 
-        .main-content { width: 900px; margin: 10px auto; display: flex; gap: 10px; }
-        .sidebar { width: 180px; background-color: #FFFFFF; border: 1px solid #999; padding: 10px; }
+        /* Conteúdo */
+        .main-content {
+            width: 900px;
+            margin: 10px auto;
+            display: flex;
+            gap: 10px;
+        }
 
-        .login-box { background-color: #EEE; border: 1px solid #CCC; padding: 8px; margin-bottom: 15px; font-size: 11px; }
-        .login-box input { width: 100%; margin: 3px 0; font-size: 10px; padding: 2px; }
+        /* Sidebar */
+        .sidebar {
+            width: 180px;
+            background-color: #FFFFFF;
+            border: 1px solid #999;
+            padding: 10px;
+        }
+
+        .login-box {
+            background-color: #EEE;
+            border: 1px solid #CCC;
+            padding: 8px;
+            margin-bottom: 15px;
+            font-size: 11px;
+        }
+
+        .login-box input {
+            width: 100%;
+            margin: 3px 0;
+            font-size: 10px;
+        }
 
         .sidebar h3 { font-size: 14px; margin: 10px 0 5px 0; border-bottom: 1px solid #CCC; }
         .sidebar ul { list-style: none; padding: 0; margin: 0; }
-        .sidebar a { text-decoration: none; color: #003399; font-size: 12px; }
+        .sidebar a { text-decoration: none; color: #003399; font-size: 12px; cursor: pointer; }
 
+        /* Área Central */
         .feed { flex: 1; background-color: white; border: 1px solid #999; padding: 15px; min-height: 400px; }
 
-        /* Estilos de Grades e Listas */
-        .search-bar { width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #999; font-size: 13px; }
-        .grid-layout { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 15px; }
-        
-        /* Card de Jogo */
-        .game-card { border: 1px solid #CCC; padding: 5px; background: #F9F9F9; text-align: left; }
-        .game-thumb { width: 100%; height: 80px; background: #DDD; border: 1px solid #BBB; margin-bottom: 5px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: #666; }
-        .game-info { font-size: 11px; line-height: 1.4; }
+        .welcome-panel {
+            border: 1px solid #CCC;
+            background-color: #F8F8F8;
+            padding: 15px;
+            text-align: center;
+        }
 
-        /* Modal */
+        .btn-play {
+            background-color: #00CC00;
+            border: 3px double #006600;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+            padding: 10px 40px;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* Modal do Client */
         #modal-overlay {
             display: none;
             position: fixed;
@@ -99,11 +150,12 @@
             box-shadow: 5px 5px 0px #000;
         }
 
+        /* Widgets Direita */
         .right-panel { width: 200px; }
         .card { background-color: white; border: 1px solid #999; padding: 10px; margin-bottom: 10px; text-align: center; }
-        .avatar-box { width: 100%; height: 180px; background-color: #6E99C9; border: 1px solid #DDD; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 20px; }
+        .avatar-box { width: 100%; height: 180px; background-color: #6E99C9; border: 1px solid #DDD; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; }
 
-        footer { width: 900px; margin: 20px auto; text-align: center; font-size: 11px; color: #666; border-top: 1px solid #AAA; padding-top: 10px; }
+        footer { width: 900px; margin: 20px auto; text-align: center; font-size: 11px; color: #FFF; text-shadow: 1px 1px #000; border-top: 1px solid #AAA; padding-top: 10px; }
     </style>
 </head>
 <body>
@@ -111,55 +163,54 @@
     <div id="modal-overlay">
         <div id="client-modal">
             <div style="background:#000033; color:white; margin:-20px -20px 20px -20px; padding:5px; text-align:left;">&nbsp; StudiaNet Launcher</div>
-            <p><b>Como deseja jogar?</b></p>
-            <div style="display:flex; flex-direction:column; gap:10px;">
-                <button onclick="baixarClient()" style="background:#FFCC00; padding:10px; font-weight:bold; border:1px solid #333;">BAIXAR CLIENT</button>
-                <button onclick="jogarNaWeb()" style="background:#DDD; padding:10px; border:1px solid #333;">JOGAR NA WEB</button>
-                <button onclick="fecharModal()" style="font-size:10px; background:none; border:none; text-decoration:underline;">Cancelar</button>
+            <b>Como deseja jogar?</b>
+            <div style="display:flex; flex-direction:column; gap:10px; margin-top:20px;">
+                <button onclick="baixarClient()" style="background:#FFCC00; padding:10px; cursor:pointer; font-weight:bold; border:1px solid #333;">BAIXAR CLIENT</button>
+                <button onclick="jogarNaWeb()" style="background:#DDD; padding:10px; cursor:pointer; border:1px solid #333;">JOGAR NA WEB</button>
+                <button onclick="fecharModal()" style="font-size:10px;">Cancelar</button>
             </div>
         </div>
     </div>
 
     <div class="logo-area">
-        <div class="logo-text" onclick="window.location.reload()">StudiaNet</div>
+        <h1 class="logo-text" onclick="window.location.reload()">StudiaNet</h1>
     </div>
 
     <div class="economy-bar">
-        <span>SNX: <b id="snx-val" class="snx-balance">0</b></span>
-        <span>TIX: <b id="tix-val" class="tix-balance">0</b></span>
+        <span class="snx-balance">SNX: <span id="snx-val">0</span></span>
+        <span class="tix-balance">TIX: <span id="tix-val">0</span></span>
     </div>
 
     <div class="nav-bar">
         <a onclick="window.location.reload()">Início</a>
-        <a onclick="abrirJogos()">Jogos</a>
-        <a onclick="abrirCatalogo()">Catálogo</a>
-        <a onclick="alert('Em breve!')">Fórum</a>
+        <a>Jogos</a>
+        <a>Catálogo</a>
+        <a>Fórum</a>
     </div>
 
     <div class="main-content">
         <aside class="sidebar">
-            <div id="login-section" class="login-box">
+            <div class="login-box" id="login-section">
                 <b>Login</b>
                 <input type="text" id="user-in" placeholder="Usuário">
                 <input type="password" placeholder="Senha">
-                <button onclick="fazerLogin()" style="width:100%; margin-top:5px;">Entrar</button>
+                <button onclick="login()" style="width:100%; font-size:10px; cursor:pointer;">Entrar</button>
             </div>
             
             <div id="user-info" style="display:none; margin-bottom:15px; font-size:12px;">
                 Bem-vindo, <b id="u-name"></b>!<br>
-                <a href="javascript:void(0)" onclick="window.location.reload()" style="color:red;">[Sair]</a>
+                <a href="#" onclick="window.location.reload()" style="font-size:10px; color:red;">[Sair]</a>
             </div>
 
             <h3>Navegação</h3>
             <ul>
-                <li><a href="#" onclick="window.location.reload()">Página Inicial</a></li>
-                <li><a href="#">Meu Perfil</a></li>
-                <li><a href="#">Personagem</a></li>
-                <li><a href="#">Amigos</a></li>
+                <li><a>Meu Perfil</a></li>
+                <li><a>Personagem</a></li>
+                <li><a>Amigos</a></li>
             </ul>
         </aside>
 
-        <main class="feed" id="main-feed">
+        <main class="feed">
             <div class="welcome-panel">
                 <h2 style="margin:0">O mundo é seu!</h2>
                 <p>Crie, jogue e compartilhe no StudiaNet.</p>
@@ -168,8 +219,7 @@
             
             <div class="card" style="text-align:left; margin-top:20px;">
                 <h4>Notícias</h4>
-                <p style="font-size:11px">- Agora você pode navegar pelos Jogos e Catálogo.</p>
-                <p style="font-size:11px">- Explore o mundo virtual do StudiaNet!</p>
+                <p style="font-size:11px">- Bem-vindo ao StudiaNet versão 2010!</p>
             </div>
         </main>
 
@@ -177,7 +227,7 @@
             <div class="card">
                 <h4>Avatar</h4>
                 <div class="avatar-box" id="av-box">STUDIA</div>
-                <button onclick="mudarCorAvatar()" style="width:100%; margin-top:10px; padding:5px;">Mudar Cor</button>
+                <button onclick="mudarCor()" style="width:100%; margin-top:5px; font-size:11px; cursor:pointer;">Mudar Cor</button>
             </div>
         </aside>
     </div>
@@ -190,100 +240,42 @@
         function abrirModal() { document.getElementById('modal-overlay').style.display = 'block'; }
         function fecharModal() { document.getElementById('modal-overlay').style.display = 'none'; }
 
-        // NOVA FUNÇÃO: ABRIR JOGOS
-        function abrirJogos() {
-            const feed = document.getElementById('main-feed');
-            let gamesHTML = '';
-            
-            // Criando 6 slots vazios conforme solicitado
-            for(let i=0; i<6; i++) {
-                gamesHTML += `
-                    <div class="game-card">
-                        <div class="game-thumb">No Image</div>
-                        <div class="game-info">
-                            <b>Nome:</b> Unknown<br>
-                            <b>Feito por:</b> Unknown
-                        </div>
-                    </div>
-                `;
-            }
-
-            feed.innerHTML = `
-                <h2 style="margin-top:0;">Jogos</h2>
-                <input type="text" class="search-bar" placeholder="Procurar por jogos...">
-                <div class="grid-layout">
-                    ${gamesHTML}
-                </div>
-                <button onclick="window.location.reload()" style="margin-top:20px; cursor:pointer;">Voltar</button>
-            `;
-        }
-
-        // FUNÇÃO: ABRIR CATÁLOGO (Mantida da anterior)
-        function abrirCatalogo() {
-            const feed = document.getElementById('main-feed');
-            feed.innerHTML = `
-                <h2 style="margin-top:0;">Catálogo</h2>
-                <div style="display:flex; gap:15px;">
-                    <div style="width:150px; background:#F2F2F2; border:1px solid #CCC; padding:10px; font-size:12px;">
-                        <b>Categorias</b><br><br>
-                        <input type="radio" name="cat" checked> Todos<br>
-                        <input type="radio" name="cat"> Chapéus<br>
-                        <input type="radio" name="cat"> Camisas
-                    </div>
-                    <div style="flex:1;">
-                        <input type="text" class="search-bar" placeholder="Pesquisar no catálogo...">
-                        <div class="grid-layout" style="grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));">
-                            <div style="border:1px solid #DDD; height:100px; display:flex; align-items:center; justify-content:center; color:#999; font-size:10px;">Empty Slot</div>
-                            <div style="border:1px solid #DDD; height:100px; display:flex; align-items:center; justify-content:center; color:#999; font-size:10px;">Empty Slot</div>
-                        </div>
-                    </div>
-                </div>
-                <button onclick="window.location.reload()" style="margin-top:20px; cursor:pointer;">Voltar</button>
-            `;
-        }
-
+        // NOVA FUNÇÃO: Jogar na Web (Altera o HTML do Feed)
         function jogarNaWeb() {
             fecharModal();
-            const feed = document.getElementById('main-feed');
-            feed.innerHTML = `
+            document.querySelector('.feed').innerHTML = `
                 <div style="text-align:center;">
-                    <h2>Carregando...</h2>
-                    <div id="game-screen" style="background:#000; height:300px; display:flex; align-items:center; justify-content:center; color:#FFF; border:2px solid #333;">
-                        <span id="load-txt">[ PROCESSANDO 0% ]</span>
+                    <h2>Carregando jogo...</h2>
+                    <p style="font-size:12px;">StudiaNet Web Player iniciado. Aguarde a conexão com o servidor.</p>
+                    <div style="background:#000; height:300px; width:100%; margin-top:10px; display:flex; align-items:center; justify-content:center; color:#0F0; border:2px solid #333;">
+                        <span style="font-family:monospace;">[ CONECTANDO AO MAPA... ]</span>
                     </div>
+                    <button onclick="window.location.reload()" style="margin-top:10px; cursor:pointer;">Sair do Jogo</button>
                 </div>
             `;
-            let p = 0;
-            let iv = setInterval(() => {
-                p += 10;
-                const txt = document.getElementById('load-txt');
-                if(txt) txt.innerText = `[ PROCESSANDO ${p}% ]`;
-                if(p >= 100) {
-                    clearInterval(iv);
-                    const screen = document.getElementById('game-screen');
-                    if(screen) screen.innerHTML = "<h1>STUDIA INICIADO!</h1>";
-                }
-            }, 200);
         }
 
-        function fazerLogin() {
-            const nome = document.getElementById('user-in').value;
-            if(nome.trim() !== "") {
+        function baixarClient() {
+            alert('Iniciando download do StudiaNetSetup.exe...');
+            fecharModal();
+        }
+
+        function login() {
+            let nome = document.getElementById('user-in').value;
+            if(nome !== "") {
                 document.getElementById('login-section').style.display = 'none';
                 document.getElementById('user-info').style.display = 'block';
                 document.getElementById('u-name').innerText = nome;
                 document.getElementById('snx-val').innerText = "50";
                 document.getElementById('tix-val').innerText = "10";
-            } else {
-                alert("Digite um nome!");
             }
         }
 
-        function mudarCorAvatar() {
-            const cores = ['#CC0000', '#00CC00', '#FFCC00', '#0000CC', '#6E99C9', '#FF6600', '#660066'];
-            const randomColor = cores[Math.floor(Math.random() * cores.length)];
-            document.getElementById('av-box').style.backgroundColor = randomColor;
+        function mudarCor() {
+            const cores = ['#CC0000', '#00CC00', '#FFCC00', '#0000CC', '#6E99C9'];
+            document.getElementById('av-box').style.backgroundColor = cores[Math.floor(Math.random() * cores.length)];
         }
     </script>
+
 </body>
 </html>
