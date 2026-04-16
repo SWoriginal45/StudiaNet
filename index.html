@@ -19,12 +19,11 @@
             margin: 0;
             padding: 0;
             color: #333;
-            background-color: #6E99C9; /* Cor de fundo caso a imagem falhe */
+            background-color: #6E99C9;
         }
         
         a, button, .btn-play, .logo-text, .grid-item { cursor: pointer; }
 
-        /* HEADER & LOGO */
         .logo-area { width: 900px; margin: 20px auto 5px auto; text-align: center; }
         .logo-text { 
             color: #CC0000; 
@@ -37,7 +36,6 @@
             display: block; 
         }
 
-        /* ECONOMY */
         .economy-bar { 
             width: 900px; 
             margin: 0 auto 10px auto; 
@@ -53,7 +51,6 @@
         .snx-balance { color: #005500; }
         .tix-balance { color: #886600; }
 
-        /* NAV BAR */
         .nav-bar { 
             width: 900px; 
             margin: 0 auto; 
@@ -75,7 +72,6 @@
         }
         .nav-bar a:hover { background-color: #355C7D; }
 
-        /* MAIN LAYOUT */
         .main-content { width: 900px; margin: 15px auto; display: flex; gap: 15px; }
         
         .sidebar, .feed, .card { 
@@ -88,14 +84,16 @@
         .feed { flex: 1; padding: 20px; min-height: 500px; }
         .right-panel { width: 200px; }
 
-        /* TEXT SIZES */
         .large-text { font-size: 18px; line-height: 1.6; }
         h2 { font-size: 32px; margin-top: 0; color: #222; border-bottom: 2px solid #6E99C9; display: inline-block; margin-bottom: 15px; }
         h4 { font-size: 22px; margin-bottom: 10px; color: #333; }
 
-        /* COMPONENTS */
+        .search-bar { width: 100%; padding: 8px; border: 1px solid #333; margin-bottom: 10px; font-size: 14px; }
+        .filter-box { background: #EEE; padding: 10px; border: 1px solid #999; margin-bottom: 15px; font-size: 12px; }
+
         .login-box { background-color: #EEE; border: 1px solid #999; padding: 8px; margin-bottom: 15px; font-size: 11px; }
         .login-box input { width: 100%; margin: 3px 0; font-size: 10px; padding: 3px; border: 1px solid #999; }
+        
         .sidebar h3 { font-size: 14px; margin: 10px 0 5px 0; border-bottom: 1px solid #999; color: #444; }
         .sidebar ul { list-style: none; padding: 0; margin: 0; }
         .sidebar a { text-decoration: none; color: #003399; font-size: 13px; font-weight: bold; }
@@ -103,7 +101,6 @@
         .card { padding: 12px; margin-bottom: 15px; text-align: center; }
         .avatar-box { width: 100%; height: 180px; background-color: #6E99C9; border: 1px solid #333; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 24px; text-shadow: 2px 2px 0px #000; }
 
-        /* CLUB CARDS */
         .club-container { display: flex; flex-direction: column; gap: 15px; }
         .club-card { border: 2px solid #333; padding: 15px; text-align: left; position: relative; box-shadow: 4px 4px 0px rgba(0,0,0,0.1); }
         .club-nada { background-color: #FFF; }
@@ -111,17 +108,13 @@
         .club-turbo { background-color: #E8F0FE; }
         .club-max { background-color: #FFF9E6; border: 3px solid #FFD700; }
 
-        /* USER BADGE */
         #user-badge { font-size: 10px; font-weight: bold; padding: 3px 6px; color: white; display: inline-block; margin-top: 5px; text-transform: uppercase; border: 1px solid rgba(0,0,0,0.2); }
 
-        /* PLAY BUTTON */
         .btn-play { background-color: #00CC00; border: 4px double #006600; color: white; font-size: 28px; font-weight: bold; padding: 15px; display: inline-block; margin-top: 10px; width: 100%; text-align: center; text-shadow: 2px 2px 0px #006600; }
 
-        /* GRIDS */
         .grid-layout { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; margin-top: 15px; }
-        .grid-item { border: 1px solid #333; padding: 10px; background: #FFF; text-align: center; font-size: 12px; }
+        .grid-item { border: 1px solid #333; padding: 10px; background: #FFF; text-align: center; font-size: 11px; }
 
-        /* MODAL */
         #modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); z-index: 1000; }
         #client-modal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: #EEE; border: 3px solid #000; width: 420px; padding: 20px; text-align: center; box-shadow: 8px 8px 0px #333; }
 
@@ -189,7 +182,7 @@
             <div class="card" style="text-align:left; margin-top:30px;">
                 <h4>Novidades</h4>
                 <p class="large-text">• StudiaNet Club já está disponível!</p>
-                <p class="large-text">• Novos itens no catálogo em breve.</p>
+                <p class="large-text">• Otimização de performance aplicada (Sem Lag).</p>
             </div>
         </main>
 
@@ -213,22 +206,28 @@
 
         function abrirJogos() {
             feed.innerHTML = `<h2>Jogos</h2>
+            <input type="text" class="search-bar" placeholder="Pesquisar jogos...">
             <div class="grid-layout">
-                ${'<div class="grid-item"><div style="height:70px; background:#CCC; margin-bottom:5px;"></div><b>Mundo XP</b><br>Por: Admin</div>'.repeat(6)}
+                ${'<div class="grid-item"><div style="height:70px; background:#BBB; border:1px solid #333; margin-bottom:5px;"></div><b>Unknown</b><br><small>Made by: Unknown</small></div>'.repeat(6)}
             </div>`;
         }
 
         function abrirCatalogo() {
             feed.innerHTML = `<h2>Catálogo</h2>
-            <div class="grid-layout">
-                ${'<div class="grid-item"><div style="height:70px; background:#DDD; margin-bottom:5px;"></div>Item Grátis</div>'.repeat(4)}
+            <div class="filter-box">
+                <b>Categoria:</b> [ Todos ] [ Chapéus ] [ Camisas ] [ Calças ] [ Rostos ]
+            </div>
+            <input type="text" class="search-bar" placeholder="Pesquisar itens...">
+            <div style="text-align:center; padding:40px; border:1px dashed #999;">
+                <p class="large-text">O catálogo está vazio no momento.</p>
             </div>`;
         }
 
         function abrirPessoas() {
             feed.innerHTML = `<h2>Pessoas</h2>
+            <input type="text" class="search-bar" placeholder="Pesquisar usuários...">
             <div class="grid-layout">
-                ${'<div class="grid-item"><div style="height:60px; background:#6E99C9; border-radius:50% !important; margin:0 auto 5px auto; width:60px;"></div>Usuário</div>'.repeat(4)}
+                ${'<div class="grid-item"><div style="height:60px; background:#6E99C9; border-radius:50% !important; margin:0 auto 5px auto; width:60px;"></div>Unknown User</div>'.repeat(4)}
             </div>`;
         }
 
@@ -239,23 +238,23 @@
                     <div class="club-card club-nada">
                         <div style="float:right;">Grátis</div>
                         <h3>Nada</h3>
-                        <p>1 jogo ativo | 5 SNX / 10 TIX diários (com login)</p>
+                        <p>1 jogo ativo | 5 SNX / 10 TIX diários</p>
                     </div>
                     <div class="club-card club-basic">
                         <div style="float:right;">100 SNX</div>
-                        <h3>Basic</h3>
+                        <h3>Basic Club</h3>
                         <p>5 jogos ativos | 10 SNX / 50 TIX diários</p>
                         <button onclick="assinar('BASIC', 100, 0)">Assinar</button>
                     </div>
                     <div class="club-card club-turbo">
                         <div style="float:right;">1000 SNX</div>
-                        <h3>Turbo</h3>
+                        <h3>Turbo Club</h3>
                         <p>20 jogos ativos | 50 SNX / 500 TIX diários</p>
                         <button onclick="assinar('TURBO', 1000, 5000)">Assinar</button>
                     </div>
                     <div class="club-card club-max">
                         <div style="float:right;">20000 SNX</div>
-                        <h3>Max</h3>
+                        <h3>MAX CLUB</h3>
                         <p><b>Ilimitado</b> | 500 SNX / 5000 TIX diários</p>
                         <button onclick="assinar('MAX', 20000, 10000)">Assinar</button>
                     </div>
@@ -263,17 +262,22 @@
             `;
         }
 
-        function abrirForum() { feed.innerHTML = `<h2>Fórum</h2><p class="large-text">Discussões da comunidade em breve!</p>`; }
-        function abrirNoticias() { feed.innerHTML = `<h2>Notícias</h2><p class="large-text">Site v1.0 oficialmente lançado hoje.</p>`; }
-        function abrirAjuda() { feed.innerHTML = `<h2>Ajuda</h2><p class="large-text">Precisa de ajuda? Entre em contato com o suporte.</p>`; }
-        
         function abrirParentes() {
-            feed.innerHTML = `<h2>Guia para Pais</h2>
-            <div class="large-text" style="background:white; padding:15px; border:1px solid #CCC;">
-                <p>O StudiaNet é focado em criatividade e segurança para jovens criadores.</p>
+            feed.innerHTML = `<h2>Guia para Parentes</h2>
+            <div class="large-text" style="background:white; padding:20px; border:1px solid #333;">
+                <h4>O que é o StudiaNet?</h4>
+                <p>O StudiaNet é um mundo virtual focado em criatividade e educação, onde usuários podem construir seus próprios cenários e interagir em um ambiente moderado.</p>
+                <h4>Segurança</h4>
+                <p>Nós levamos a segurança a sério. Contamos com sistemas de filtragem de chat e moderação para garantir que a experiência seja saudável para todas as idades.</p>
+                <h4>Educação</h4>
+                <p>Ao criar mundos, os usuários aprendem noções básicas de lógica, design e socialização digital.</p>
             </div>`;
         }
 
+        function abrirForum() { feed.innerHTML = `<h2>Fórum</h2><p class="large-text">O fórum está em manutenção. Volte logo!</p>`; }
+        function abrirNoticias() { feed.innerHTML = `<h2>Notícias</h2><p class="large-text">• Lançamento da v1.0 sem lag!<br>• Novas ferramentas de construção em breve.</p>`; }
+        function abrirAjuda() { feed.innerHTML = `<h2>Ajuda & Suporte</h2><p class="large-text">Dúvidas? Mande um e-mail para suporte@studianet.com</p>`; }
+        
         function assinar(plano, custoSNX, custoTIX) {
             const snx = parseInt(document.getElementById('snx-val').innerText);
             const tix = parseInt(document.getElementById('tix-val').innerText);
@@ -282,8 +286,8 @@
                 document.getElementById('tix-val').innerText = tix - custoTIX;
                 currentPlan = plano;
                 atualizarDistintivo();
-                alert("Você agora é " + plano + "!");
-            } else { alert("Moedas insuficientes!"); }
+                alert("Assinatura efetuada: " + plano + "!");
+            } else { alert("Saldo insuficiente!"); }
         }
 
         function atualizarDistintivo() {
@@ -310,7 +314,7 @@
 
         function jogarNaWeb() {
             fecharModal();
-            feed.innerHTML = `<div style="text-align:center;"><h2>Carregando Engine...</h2><div style="background:#000; height:300px; color:#0F0; display:flex; align-items:center; justify-content:center; font-family:monospace;">[ LOADING ASSETS... ]</div></div>`;
+            feed.innerHTML = `<div style="text-align:center;"><h2>Conectando...</h2><div style="background:#000; height:300px; color:#0F0; display:flex; align-items:center; justify-content:center; font-family:monospace; font-size:18px;">[ LOADING ASSETS: 100% ]<br>[ CONNECTING TO SERVER... ]</div></div>`;
         }
 
         function mudarCorAvatar() {
